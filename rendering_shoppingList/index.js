@@ -31,31 +31,34 @@ function generateShoppingItemsString(shoppingList) {
 function renderShoppingList() {
 //For each item in STORE, generate a string representing an <li> with:
 //  the item name rendered as inner text
-  //the item's index in the STORE set as a data attribute on the <li> (more on that in a moment)
-  //the item's checked state (true or false) rendered as the presence or absence of a CSS class for indicating checked items (specifically, .shopping-item__checked from index.css)
-  //Join together the individual item strings intoert the <li>s string inside the .js-shopping-list <ul> in one long string
-  // Ins the DOM.
+//the item's index in the STORE set as a data attribute on the <li> (more on that in a moment)
+//the item's checked state (true or false) rendered as the presence or absence of a CSS class for indicating checked items (specifically, .shopping-item__checked from index.css)
+//Join together the individual item strings intoert the <li>s string inside the .js-shopping-list <ul> in one long string
+// Ins the DOM.
   console.log('renderShoppingList works');
   const shoppingListItemsString = generateShoppingItemsString(STORE);
     // insert that HTML into the DOM
     $('.js-shopping-list').html(shoppingListItemsString);
 }
 
+//changes store
 function addItemToShoppingList(itemName) {
     console.log(`Adding "${itemName}" to shopping list`);
     STORE.push({name: itemName, checked: false});
   }
 
+  //event listener function
 function handleNewItemSubmit() {
 // You should be able to add items to the list
    $ ('#js-shopping-list-form').submit(function(event) {
     event.preventDefault();
-    const newItemNAme = $('.js-shopping-list-entry').val();
+    const newItemName = $('.js-shopping-list-entry').val();
+    console.log(newItemName);
     $('.js-shopping-list-entry').val('');
     addItemToShoppingList(newItemName);
     renderShoppingList();
    });
-  consoloe.log('handleNewItemSubmit works');
+  console.log('handleNewItemSubmit works');
 }
 
 function handleItemCheckClicked() {
@@ -63,9 +66,23 @@ function handleItemCheckClicked() {
   console.log('handleItemCheckClicked works');
 }
 
+function deleteItem(index) {
+    //remove elements from starting - index to that one element
+    STORE.splice(index, 1);
+}
 function handleDeleteItemClicked() {
+    console.log('handleDeleteItemClicked works');
+    
+    
 // You should be able to delete items from the list
-  console.log('handleDeleteItemClicked works');
+//get related user info from DOM
+//index of item we clicked on
+//const itemIndex = getItemIndexFromElement(event.currentTarget);
+//change store
+//deleteItem(itemIndex);
+//render
+//renderShoppingList();
+  
 }
 
 function handleShoppingList() {
