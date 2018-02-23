@@ -4,6 +4,19 @@ const STORE = [
   {name: 'milk', checked: true},
   {name: 'bread', checked: false}
 ];
+
+function generateItemElement(item, itemIndex, template) {
+    return `
+    <li>${item.name}</li>`;
+}
+
+function generateShoppingItemsString(shoppingList) {
+    console.log("Generating shopping list element");
+    
+    const items = shoppingList.map((item, index) => generateItemElement(item, index));
+    
+    return items.join('');
+}
   
 function renderShoppingList() {
 //For each item in STORE, generate a string representing an <li> with:
@@ -13,10 +26,11 @@ function renderShoppingList() {
   //Join together the individual item strings intoert the <li>s string inside the .js-shopping-list <ul> in one long string
   // Ins the DOM.
   console.log('renderShoppingList works');
-  const shoppingListItemsString = '<li>apples</li>';
+  const shoppingListItemsString = generateShoppingItemsString(STORE);
     // insert that HTML into the DOM
     $('.js-shopping-list').html(shoppingListItemsString);
 }
+
 
 function handleNewItemSubmit() {
 // You should be able to add items to the list
