@@ -41,9 +41,20 @@ function renderShoppingList() {
     $('.js-shopping-list').html(shoppingListItemsString);
 }
 
+function addItemToShoppingList(itemName) {
+    console.log(`Adding "${itemName}" to shopping list`);
+    STORE.push({name: itemName, checked: false});
+  }
 
 function handleNewItemSubmit() {
 // You should be able to add items to the list
+   $ ('#js-shopping-list-form').submit(function(event) {
+    event.preventDefault();
+    const newItemNAme = $('.js-shopping-list-entry').val();
+    $('.js-shopping-list-entry').val('');
+    addItemToShoppingList(newItemName);
+    renderShoppingList();
+   });
   consoloe.log('handleNewItemSubmit works');
 }
 
