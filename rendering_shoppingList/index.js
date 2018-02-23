@@ -66,6 +66,7 @@ function toggleCheckedForListItem(itemIndex) {
   STORE[itemIndex].checked = !STORE[itemIndex].checked;
 }
 
+
 function getItemIndexFromElement(item) {
   const itemIndexString = $(item)
     .closest('.js-item-index-element')
@@ -77,7 +78,6 @@ function handleItemCheckClicked() {
   $('.js-shopping-list').on('click', `.js-item-toggle`, event => {
     console.log('`handleItemCheckClicked` ran');
     const itemIndex = getItemIndexFromElement(event.currentTarget);
-    console.log(itemIndex);
     toggleCheckedForListItem(itemIndex);
     renderShoppingList();
   });
@@ -86,18 +86,22 @@ function handleItemCheckClicked() {
 function deleteItem(index) {
     //remove elements from starting - index to that one element
     STORE.splice(index, 1);
-}
+  }
+
 function handleDeleteItemClicked() {
     console.log('handleDeleteItemClicked works');
-    
-    
+    //get related user info from DOM
+  $('.js-shopping-list').on('click', '.js-item-delete', event => {
+    const itemIndex = getItemIndexFromElement(event.currentTarget);
+    deleteItem(itemIndex);
+    renderShoppingList();
+  });
+    //change store
+
 // You should be able to delete items from the list
-//get related user info from DOM
 //index of item we clicked on
 //const itemIndex = getItemIndexFromElement(event.currentTarget);
-//change store
 //deleteItem(itemIndex);
-//render
 //renderShoppingList();
   
 }
